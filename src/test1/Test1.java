@@ -1,6 +1,7 @@
 package test1;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Test1 {
     public static void main(String[] args) {
@@ -14,9 +15,9 @@ public class Test1 {
         peoples.add(new SimplePeople("가","남",29));
         peoples.add(new SimplePeople("나", "여", 30));
 
-        chairs.add(new DuoBack(4,"검정"));
-        chairs.add(new DuoBack(3,"빨강"));
-        chairs.add(new DuoBack(5,"노랑"));
+        chairs.add(new SmallChair(4,"검정"));
+        chairs.add(new SmallChair(3,"빨강"));
+        chairs.add(new SmallChair(5,"노랑"));
 
         peoples.get(1).sit(chairs.get(2));
 
@@ -34,11 +35,11 @@ public class Test1 {
     static void printChairStatus(ArrayList<Chair> chairs){//n번 의자는 (사람이름)님이 사용 중 입니다.
         for(int i = 0; i<chairs.size() ; i++){
             Chair chair = chairs.get(i);
-            People sitPeople = chair.whoisSitting(); //줄여서 적는게 좋을까?
-            if(sitPeople==null){
+            List<CanSit> sitList = chair.getObjectThatIsBeingOccupied(); //줄여서 적는게 좋을까?
+            if(sitList==null||sitList.size()==0){
                 System.out.printf("%d번 의자는 사람이 없습니다.\n",i+1);
             }else{
-                System.out.printf("%d번 의자는 %s님이 사용 중 입니다.\n",i+1,sitPeople.getName());
+                System.out.printf("%d번 의자는 %d명이 사용 중 입니다.\n",i+1,sitList.size());
             }
         }
     }

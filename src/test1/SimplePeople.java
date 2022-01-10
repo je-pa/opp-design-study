@@ -33,12 +33,12 @@ public class SimplePeople implements People {
     }
 
     @Override
-    public void sit(Chair chair) {
-        if(chair.whoisSitting()!=null) {
-            System.out.println("이미 사용 중인 의자 입니다.");
-        }else {
+    public void sit(Sitable sitable) {
+        if(chair.hasEmptyPlace()) {
             this.chair = chair;
-            chair.setPeople(this);
+            chair.setObjectThatIsBeingOccupied(this);
+        }else {
+            System.out.println("이미 사용 중인 의자 입니다.");
         }
     }
 
@@ -47,7 +47,7 @@ public class SimplePeople implements People {
         if(this.chair==null){
             System.out.printf("%s님은 이미 서있습니다.\n",this.name);
         }else{
-            this.chair.setPeople(null);
+            this.chair.setObjectThatIsBeingOccupied(null);
             this.chair=null;
         }
     }
