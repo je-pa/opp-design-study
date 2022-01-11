@@ -46,7 +46,17 @@ public class SmallChair implements Chair {
     }
 
     @Override
-    public void setObjectThatIsBeingOccupied(CanSit canSit) {
+    public boolean addObjectThatIsBeingOccupied(CanSit canSit) {
+        if(this.hasEmptyPlace()) {
+            return objectThatIsBeingOccupied.add(canSit);
+        }else {
+            System.out.println("앉을 수 있는 공간이 없습니다.");
+            return false;
+        }
+    }
 
+    @Override
+    public boolean removeObjectThatIsBeingOccupied(CanSit canSit) {
+        return objectThatIsBeingOccupied.remove(canSit);
     }
 }

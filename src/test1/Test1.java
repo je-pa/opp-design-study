@@ -11,9 +11,9 @@ public class Test1 {
         ArrayList<People> peoples = new ArrayList<>();
         ArrayList<Chair> chairs = new ArrayList<>();
 
-        peoples.add(new SimplePeople("지은","여",26));
-        peoples.add(new SimplePeople("가","남",29));
-        peoples.add(new SimplePeople("나", "여", 30));
+        peoples.add(new SitPeople("지은","여",26));
+        peoples.add(new SitPeople("가","남",30));
+        peoples.add(new SitPeople("나", "여", 15));
 
         chairs.add(new SmallChair(4,"검정"));
         chairs.add(new SmallChair(3,"빨강"));
@@ -45,7 +45,7 @@ public class Test1 {
     }
     static void printPeopleStatus(ArrayList<People> peoples ,ArrayList<Chair> chairs){ //(사람이름)님은 몇번 의자에 앉아 있습니다.
         for(People people : peoples){
-            Chair chair = people.sittingChair();
+            Sitable chair = people.sittingPlace();
             if(chair==null){
                 System.out.printf("%s님은 아무 의자에도 앉아있지 않습니다.\n",people.getName());
             }else{

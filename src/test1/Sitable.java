@@ -5,5 +5,6 @@ import java.util.List;
 public interface Sitable {
     boolean hasEmptyPlace();
     List<CanSit> getObjectThatIsBeingOccupied();
-    void setObjectThatIsBeingOccupied(CanSit canSit);
+    boolean addObjectThatIsBeingOccupied(CanSit canSit);
+    boolean removeObjectThatIsBeingOccupied(CanSit canSit);
 }

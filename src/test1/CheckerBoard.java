@@ -1,8 +1,6 @@
 package test1;
 
 public class CheckerBoard implements Board{
-    private int x;
-    private int y;
     private Object[][] board;
 
     CheckerBoard(int x, int y){
