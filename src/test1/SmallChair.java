@@ -1,18 +1,20 @@
 package test1;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SmallChair implements Chair {
     private final static int SEAT_COUNT =2;
-    private List<CanSit> objectThatIsBeingOccupied;
-
+    private final List<CanSit> objectThatIsBeingOccupied = new ArrayList<>();
+    //내부는 변경되지만 담고있는 그릇은 final가능
     private int legsNum;
     private String color;
-    private String BRAND;
+    private String brand;
 
-    public SmallChair(int legsNum, String color) {
+    public SmallChair(int legsNum, String color, String brand) {
         this.legsNum = legsNum;
         this.color = color;
+        this.brand = brand;
     }
 
     @Override
@@ -30,14 +32,12 @@ public class SmallChair implements Chair {
 
     @Override
     public String getBrand() {
-        return BRAND;
+        return brand;
     }
 
     @Override
     public boolean hasEmptyPlace() {
-        if(SEAT_COUNT >= objectThatIsBeingOccupied.size()){
-            return true;
-        }return false;
+        return ( SEAT_COUNT > objectThatIsBeingOccupied.size() );//값자체도 리턴가능
     }
 
     @Override

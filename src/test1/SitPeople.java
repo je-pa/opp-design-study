@@ -34,16 +34,25 @@ public class SitPeople implements People {
 
     @Override
     public void sit(Sitable sitable) {
-        if(this.sitable!=null){
-            if(this.sitable==sitable) {
-                System.out.println("이미 해당 자리에 앉아있습니다.");
-            }else{
-                this.stand();
-            }
+        if(this.sitable ==null){
+            sitAction(sitable);
+        }else if(this.sitable != sitable){
+            move(this.sitable, sitable);
+        }else{
+            System.out.println("이미 해당 자리에 앉아 있습니다.");
         }
+    }
+
+    private void move(Sitable from, Sitable to){
+        from.removeObjectThatIsBeingOccupied(this);
+        this.sitable = null;
+        sitAction(to);
+    }
+
+    private void sitAction(Sitable sitable){
         if(sitable.hasEmptyPlace()) {
-            sitable.addObjectThatIsBeingOccupied(this);
             this.sitable = sitable;
+            sitable.addObjectThatIsBeingOccupied(this);
         }else {
             System.out.println("앉을 수 있는 공간이 없습니다.");
         }

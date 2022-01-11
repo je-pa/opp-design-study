@@ -8,49 +8,15 @@ public class Test1 {
         // 사람(아름, 성별, 나이) 과
         // 의자(다리수, 색깔, 브랜드)
         // 사람 의자에 앉는행위
-        ArrayList<People> peoples = new ArrayList<>();
-        ArrayList<Chair> chairs = new ArrayList<>();
+        Board checkerBoard = new CheckerBoard(5,5);
+        checkerBoard.setXY(1,3,new SitPeople("지은","여",26));
+        checkerBoard.setXY(2,4,new SitPeople("가","남",30));
+        checkerBoard.setXY(3,4,new SmallChair(4,"검정","이케아"));
 
-        peoples.add(new SitPeople("지은","여",26));
-        peoples.add(new SitPeople("가","남",30));
-        peoples.add(new SitPeople("나", "여", 15));
-
-        chairs.add(new SmallChair(4,"검정"));
-        chairs.add(new SmallChair(3,"빨강"));
-        chairs.add(new SmallChair(5,"노랑"));
-
-        peoples.get(1).sit(chairs.get(2));
-
-        peoples.get(2).sit(chairs.get(2));
-
-        peoples.get(0).sit(chairs.get(1));
-        peoples.get(0).stand();
-        peoples.get(0).stand();
-
-        System.out.println();
-        printChairStatus(chairs);
-        System.out.println();
-        printPeopleStatus(peoples, chairs);
-    }
-    static void printChairStatus(ArrayList<Chair> chairs){//n번 의자는 (사람이름)님이 사용 중 입니다.
-        for(int i = 0; i<chairs.size() ; i++){
-            Chair chair = chairs.get(i);
-            List<CanSit> sitList = chair.getObjectThatIsBeingOccupied(); //줄여서 적는게 좋을까?
-            if(sitList==null||sitList.size()==0){
-                System.out.printf("%d번 의자는 사람이 없습니다.\n",i+1);
-            }else{
-                System.out.printf("%d번 의자는 %d명이 사용 중 입니다.\n",i+1,sitList.size());
+        for(int i=0 ; i<checkerBoard.getXSize() ; i++){
+            for(int j=0 ; j<checkerBoard.getYSize() ; j++){
+                System.out.printf("(%d , %d)공간 : %s , \n",i,j,checkerBoard.getXY(i,j));
             }
         }
     }
-    static void printPeopleStatus(ArrayList<People> peoples ,ArrayList<Chair> chairs){ //(사람이름)님은 몇번 의자에 앉아 있습니다.
-        for(People people : peoples){
-            Sitable chair = people.sittingPlace();
-            if(chair==null){
-                System.out.printf("%s님은 아무 의자에도 앉아있지 않습니다.\n",people.getName());
-            }else{
-                System.out.printf("%s님은 %d번 의자에 앉아 있습니다.\n",people.getName(), chairs.indexOf(chair)+1);
-            }
-        }
-    }//
 }
